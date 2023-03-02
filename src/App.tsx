@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CreateTodoButton, TodoCounter, TodoItem, TodoList, TodoSearch } from './components'
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 const defaultTodos = [
   { text: 'Tarea 1', completed: true },
@@ -10,42 +11,46 @@ const defaultTodos = [
   { text: 'Perceptron', completed: false },
 ]
 
+interface propsTodo {
+  text: string
+  completed: boolean
+}
 
 function App() {
-  const [todos, setTodos] = useState(defaultTodos)
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', defaultTodos);
   const [searchValue, setSearchValue] = useState('');
   
   const totalTodos = todos.length;
-  const completedTodos = todos.filter( (todo) => !!todo.completed ).length;
+  const completedTodos = todos.filter( (todo:propsTodo) => !!todo.completed ).length;
 
   let searchedTodos = [];
   
   if(searchValue.length < 1) {
     searchedTodos = todos;
   } else {
-    searchedTodos = todos.filter( (todo) => {
+    searchedTodos = todos.filter( (todo:propsTodo) => {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
     });
   }
 
-  const completeTodo = (text:string) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+  const completeTodo = ( text:string ) => {
+    const todoIndex = todos.findIndex( (todo:propsTodo) => todo.text === text);
     const newTodos = [...todos];
     if(!newTodos[todoIndex].completed) {
       newTodos[todoIndex].completed = true;
     } else {
       newTodos[todoIndex].completed = false;
     }
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
-  const deleteTodo = (text:string) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
+  const deleteTodo = ( text:string ) => {
+    const todoIndex = todos.findIndex( (todo:propsTodo) => todo.text === text);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   return (
@@ -57,7 +62,7 @@ function App() {
       </div>
       <TodoList>
         {
-          searchedTodos.map( todo => (
+          searchedTodos.map( (todo:propsTodo) => (
             <TodoItem 
               key={ todo.text } 
               text={ todo.text } 
