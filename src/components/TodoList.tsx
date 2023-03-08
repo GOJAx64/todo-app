@@ -1,5 +1,6 @@
+import { TodoListProps } from '../types';
 
-export const TodoList = (props:any) => {
+export function TodoList(props:TodoListProps) {
   return (
     <section>
       <ul>

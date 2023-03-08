@@ -1,9 +1,6 @@
-interface TodoSearchProps {
-  searchValue: string,
-  setSearchValue: Function,
-}
+import { TodoSearchProps } from '../types';
 
-export const TodoSearch = ({ searchValue, setSearchValue }:TodoSearchProps) => {
+export function TodoSearch({ searchValue, setSearchValue }:TodoSearchProps) {
   
   const onSearchValueChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
     setSearchValue(e.target.value);

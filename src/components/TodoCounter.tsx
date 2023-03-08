@@ -1,9 +1,6 @@
-interface TodoCounterProps {
-  totalTodos: number,
-  completedTodos: number,
-}
+import { TodoCounterProps } from '../types';
 
-export const TodoCounter = ({ totalTodos, completedTodos }:TodoCounterProps) => {
+export function TodoCounter({ totalTodos, completedTodos }:TodoCounterProps) {
   return (
     <>
       <h1 className="text-4xl font-extrabold text-center text-orange-700">ToDo App</h1>

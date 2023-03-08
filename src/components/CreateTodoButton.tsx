@@ -1,6 +1,5 @@
 
-export const CreateTodoButton = () => {
-  
+export function CreateTodoButton() {
   const onClickButton = () => {
     console.log('add');
   };
