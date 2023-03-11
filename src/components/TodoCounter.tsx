@@ -1,6 +1,8 @@
-import { TodoCounterProps } from '../types';
+import { useAppContext } from '../hooks';
 
-export function TodoCounter({ totalTodos, completedTodos }:TodoCounterProps) {
+export function TodoCounter() {
+  const { totalTodos, completedTodos } = useAppContext();
+  
   return (
     <>
       <h1 className="text-4xl font-extrabold text-center text-orange-700">ToDo App</h1>

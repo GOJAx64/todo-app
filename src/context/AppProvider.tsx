@@ -1,15 +1,15 @@
 import { createContext, useState } from 'react';
-import { ContextProps, defaultTodos, Todo } from '../types';
+import { ContextProps, defaultTodos, propsAppProvider, Todo } from '../types';
 import { useLocalStorage } from '../hooks';
 
+const AppContext = createContext<ContextProps>(); //! Resolve this
 
-const AppContext = createContext<ContextProps>();
-
-export const AppProvider = ({ children }:any) => {
+export const AppProvider = ({ children }:propsAppProvider) => {
     
     const [todos, saveTodos] = useLocalStorage('TODOS_V1', defaultTodos);
     const [searchValue, setSearchValue] = useState('');
-    
+    const [showModal, setShowModal] = useState(false);
+
     const totalTodos = todos.length;
     const completedTodos = todos.filter( (todo:Todo) => !!todo.completed ).length;
 
@@ -54,6 +54,8 @@ export const AppProvider = ({ children }:any) => {
                 searchedTodos,
                 completeTodo,
                 deleteTodo,
+                showModal,
+                setShowModal,
             }}
         >
             { children }

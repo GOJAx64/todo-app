@@ -1,6 +1,7 @@
-import { TodoSearchProps } from '../types';
+import { useAppContext } from '../hooks';
 
-export function TodoSearch({ searchValue, setSearchValue }:TodoSearchProps) {
+export function TodoSearch() {
+  const { searchValue, setSearchValue  } = useAppContext();
   
   const onSearchValueChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
     setSearchValue(e.target.value);
