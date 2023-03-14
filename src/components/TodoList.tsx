@@ -1,10 +1,14 @@
-import { TodoListProps } from '../types';
+import { useAppContext } from '../hooks';
+import { Todo } from '../types';
+import { TodoItem } from './';
 
-export function TodoList( props:TodoListProps ) {
+export function TodoList() {
+  const { searchedTodos } = useAppContext();
+
   return (
     <section>
       <ul>
-        { props.children }
+        { searchedTodos.map( (todo:Todo) => <TodoItem key={ todo.text } todo={ todo } />) }
       </ul>
     </section>
   )

@@ -1,13 +1,9 @@
 import { useAppContext } from "../hooks";
 
 export function ModalContent() {
-    const { setShowModal } = useAppContext();
+    const { setShowModal, addTodo, textTodo, setTextTodo } = useAppContext();
     
     return (
-        // <div className="h-3/4 md:h-auto fixed top-20 md:top-24 left-0 right-0 mx-5 md:w-5/12 md:mx-auto mt-4 p-6 md:p-10 bg-slate-800 border border-slate-700 shadow-xl rounded-xl text-slate-500">
-        //     <div>I'm a modal dialog</div>
-        //     <button onClick={ () => setShowModal(false) }> X </button>
-        // </div>
         <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                 <div className="relative w-full md:w-5/12 m-6 max-w-3xl border border-slate-900 rounded-lg">
@@ -28,10 +24,16 @@ export function ModalContent() {
                     
                     {/*body*/}
                     <div className="relative p-6 flex-auto">
-                        <input placeholder="Task" className="placeholder-slate-500 w-full my-4 text-slate-500 text-lg bg-slate-700 border border-slate-900 leading-relaxed rounded-lg px-3 py-1"/>
-                        {/* <input placeholder="Title" className="w-full md:w-2/3 mb-4 text-slate-500 text-lg bg-slate-700 leading-relaxed rounded px-3 py-1"/> */}
+                        <input 
+                            id="text"
+                            type="text"
+                            placeholder="Task" 
+                            className="placeholder-slate-500 w-full my-4 text-slate-500 text-lg bg-slate-700 border border-slate-900 leading-relaxed rounded-lg px-3 py-1"
+                            value={ textTodo }
+                            onChange={ e => setTextTodo(e.target.value) }
+                        />
                     </div>
-                    
+
                     {/*footer*/}
                     <div className="flex items-center justify-end p-6 border-t border-solid border-slate-900 rounded-b">
                     <button
@@ -44,7 +46,7 @@ export function ModalContent() {
                     <button
                         className="bg-blue-900 text-slate-300 active:bg-emerald-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
-                        onClick={() => setShowModal(false)}
+                        onClick={() => addTodo(textTodo)}
                     >
                         Save
                     </button>

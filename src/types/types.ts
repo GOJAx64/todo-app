@@ -11,9 +11,12 @@ export interface ContextProps {
     completedTodos: number
     searchedTodos: Todo[]
     completeTodo: (text: string) => void
+    addTodo: (text: string) => void
     deleteTodo: (text: string) => void
     showModal: boolean
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
+    textTodo: string
+    setTextTodo: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export interface propsAppProvider {
@@ -27,12 +30,3 @@ export interface TodoListProps {
 export interface TodoItemProps {
     todo: Todo
 }
-
-export const defaultTodos = [
-    { text: 'Tarea 1', completed: true },
-    { text: 'Tarea 2', completed: true },
-    { text: 'Tarea 3', completed: false },
-    { text: 'Tarea 4', completed: false },
-    { text: 'Compiladores', completed: true },
-    { text: 'Perceptron', completed: false },
-]
