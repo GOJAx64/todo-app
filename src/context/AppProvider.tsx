@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 import { ContextProps, propsAppProvider, Todo } from '../types';
 import { useLocalStorage } from '../hooks';
 
-const AppContext = createContext<ContextProps>(); //! Resolve this
+const AppContext = createContext<ContextProps | any>(null); //? Resolve this
 
 export const AppProvider = ({ children }:propsAppProvider) => {
     
